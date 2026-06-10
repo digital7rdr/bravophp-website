@@ -1,0 +1,19 @@
+# secrets
+.env
+
+# logs
+/storage/logs/*.log
+
+# user uploads (re-uploaded on the live site)
+/public/assets/uploads/*
+!/public/assets/uploads/.gitkeep
+
+# large source assets / archives (not needed to run the site)
+*.pdf
+*.zip
+
+# php deps (if you ever add composer)
+/vendor/
+
+# os
+.DS_Store
