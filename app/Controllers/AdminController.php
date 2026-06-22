@@ -28,7 +28,6 @@ final class AdminController extends Controller
     public const CONTENT_DOCS = [
         'site' => 'Navigation & Footer',
         'home' => 'Home',
-        'request-support' => 'Request Support',
         'secure-services' => 'Secure Services',
         'virtual-bodyguard' => 'Virtual Bodyguard',
         'bravo-comms' => 'Bravo Comms',

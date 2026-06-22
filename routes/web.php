@@ -5,7 +5,6 @@ use App\Controllers\PageController;
 
 // Public site
 $router->get('/', [PageController::class, 'home']);
-$router->get('/request-support', [PageController::class, 'page']);
 $router->post('/request', [PageController::class, 'submitRequest']);
 $router->get('/secure-services', [PageController::class, 'page']);
 $router->get('/services', [PageController::class, 'servicesRedirect']);

@@ -253,3 +253,89 @@ function comp_request_panel(array $request, string $id = 'request'): void
     </div>
     <?php
 }
+
+/** Compact request bar (home) — a few key fields; full form lives on Secure Services. */
+function comp_request_compact(array $request, string $id = 'request'): void
+{
+    $tabs = $request['serviceTabs'] ?? [];
+    $okRef = flash('request_ref');
+    $okCode = flash('request_code');
+    ?>
+    <div id="<?= e($id) ?>" class="scroll-mt-24 rounded-2xl border border-border-default bg-surface1 p-5 shadow-panel md:p-6">
+      <?php if ($okRef): ?>
+        <div class="rounded-xl border border-border-subtle bg-surface3 p-5 text-center">
+          <span class="mx-auto mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-action/15 text-action"><?= icon('check') ?></span>
+          <h3 class="text-[15px] font-semibold text-white">Request received</h3>
+          <p class="mx-auto mt-1 text-[12px] text-t-secondary">Reference <span class="font-semibold text-t-secondary"><?= e($okRef) ?></span> · Secure code <span class="font-semibold text-t-secondary"><?= e((string) $okCode) ?></span></p>
+        </div>
+      <?php else: ?>
+        <div class="mb-4 flex items-center justify-between gap-4">
+          <h2 class="text-[16px] font-semibold text-white"><?= e($request['heading'] ?? 'Request Support') ?></h2>
+          <a href="/secure-services#request" class="hidden text-[12px] text-action hover:text-action-hover sm:inline">More options</a>
+        </div>
+        <form method="post" action="/request" class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-5 md:items-end">
+          <?= csrf_field() ?>
+          <div>
+            <label class="<?= bs_label() ?>" for="rq_service">Service</label>
+            <select id="rq_service" name="service_type" class="<?= bs_input() ?> appearance-none">
+              <?php foreach ($tabs as $tab): ?><option value="<?= e($tab['key']) ?>"><?= e($tab['label']) ?></option><?php endforeach; ?>
+            </select>
+          </div>
+          <div><label class="<?= bs_label() ?>" for="rq_loc">Location</label><input id="rq_loc" name="location" class="<?= bs_input() ?>" placeholder="City or area"></div>
+          <div><label class="<?= bs_label() ?>" for="rq_date">Date</label><input id="rq_date" name="date" type="date" class="<?= bs_input() ?>"></div>
+          <div><label class="<?= bs_label() ?>" for="rq_email">Email</label><input id="rq_email" name="email" type="email" class="<?= bs_input() ?>" placeholder="you@example.com"></div>
+          <div><button type="submit" class="<?= bs_btn_primary() ?> w-full">Request Support</button></div>
+        </form>
+        <p class="mt-3 text-[12px] text-t-muted"><?= e($request['subheading'] ?? '') ?></p>
+      <?php endif; ?>
+    </div>
+    <?php
+}
+
+/** Horizontal image carousel of cards (home, Etihad-style). */
+function comp_carousel(string $heading, ?string $intro, array $cards): void
+{
+    ?>
+    <section class="bg-card py-16 md:py-24">
+      <div class="container-bravo">
+        <div class="mb-8 flex items-end justify-between gap-4">
+          <div class="max-w-2xl">
+            <h2 class="text-[24px] font-semibold leading-tight text-ink md:text-[28px]"><?= e($heading) ?></h2>
+            <?php if ($intro): ?><p class="mt-3 text-[15px] leading-relaxed text-ink-soft"><?= e($intro) ?></p><?php endif; ?>
+          </div>
+          <div class="hidden shrink-0 gap-2 md:flex">
+            <button type="button" data-carousel-prev aria-label="Previous" class="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-ink-soft shadow-card-sm hover:text-action">‹</button>
+            <button type="button" data-carousel-next aria-label="Next" class="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-ink-soft shadow-card-sm hover:text-action">›</button>
+          </div>
+        </div>
+        <div class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2" data-carousel>
+          <?php foreach ($cards as $card): comp_carousel_card($card); endforeach; ?>
+        </div>
+      </div>
+    </section>
+    <?php
+}
+
+function comp_carousel_card(array $card): void
+{
+    $img = trim((string) ($card['image'] ?? ''));
+    $imgSrc = $img !== '' ? media_src($img) : '';
+    $href = $card['href'] ?? '#';
+    ?>
+    <a href="<?= e($href) ?>" class="group relative block h-72 w-[280px] min-w-[280px] shrink-0 snap-start overflow-hidden rounded-2xl border border-line shadow-card">
+      <?php if ($imgSrc !== ''): ?>
+        <img src="<?= e($imgSrc) ?>" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+      <?php else: ?>
+        <div class="absolute inset-0 bg-gradient-to-br from-navy via-midnight to-midnight"></div>
+        <div class="absolute inset-0 opacity-[0.14]" style="background-image:linear-gradient(#244C82 1px,transparent 1px),linear-gradient(90deg,#244C82 1px,transparent 1px);background-size:32px 32px;"></div>
+        <div class="absolute right-4 top-4 text-action/25"><?= str_replace('class="icon"', 'class="h-12 w-12"', icon($card['icon'] ?? 'shield')) ?></div>
+      <?php endif; ?>
+      <div class="absolute inset-0 bg-gradient-to-t from-midnight/90 via-midnight/20 to-transparent"></div>
+      <div class="relative flex h-full flex-col justify-end p-5">
+        <h3 class="text-[18px] font-semibold text-white"><?= e($card['title'] ?? '') ?></h3>
+        <p class="mt-1 text-[13px] leading-snug text-white/80"><?= e($card['body'] ?? '') ?></p>
+        <span class="mt-3 inline-flex items-center gap-1 text-[13px] font-medium text-white">Learn more <?= str_replace('class="icon"', 'class="h-4 w-4"', icon('arrow')) ?></span>
+      </div>
+    </a>
+    <?php
+}

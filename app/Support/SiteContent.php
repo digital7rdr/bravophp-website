@@ -21,7 +21,6 @@ final class SiteContent
             'logoSize' => \App\Models\Setting::get('logo_size', 'Medium'),
             'menu' => [
                 ['icon' => 'home', 'label' => 'Home', 'href' => '/'],
-                ['icon' => 'list', 'label' => 'Request Support', 'href' => '/request-support'],
                 ['icon' => 'shield', 'label' => 'Secure Services', 'href' => '/secure-services'],
                 ['icon' => 'target', 'label' => 'Virtual Bodyguard', 'href' => '/virtual-bodyguard'],
                 ['icon' => 'message', 'label' => 'Bravo Comms', 'href' => '/bravo-comms'],
@@ -32,13 +31,12 @@ final class SiteContent
             ],
             'navCtas' => [
                 ['label' => 'Manage Request', 'href' => '/manage', 'style' => 'ghost'],
-                ['label' => 'Request Support', 'href' => '/request-support', 'style' => 'primary'],
+                ['label' => 'Request Support', 'href' => '/secure-services', 'style' => 'primary'],
             ],
             'footer' => [
                 'blurb' => 'Bravo Secure is a controlled operational platform for secure mobility, communication, risk awareness, and executive support. Every request is reviewed before confirmation.',
                 'columns' => [
                     ['title' => 'Services', 'links' => [
-                        ['label' => 'Request Support', 'href' => '/request-support'],
                         ['label' => 'Secure Services', 'href' => '/secure-services'],
                         ['label' => 'Long-Term Bookings', 'href' => '/long-term-bookings'],
                         ['label' => 'Manage Request', 'href' => '/manage'],
@@ -168,7 +166,7 @@ final class SiteContent
                     ['icon' => 'headset', 'title' => 'Live Coordination', 'body' => 'Real-time communication and updates throughout your support.'],
                 ]],
                 'platform' => ['heading' => 'One platform for movement, protection and escalation', 'body' => 'Request secure transfers and protection, monitor live risk, communicate securely, and escalate in real time — all through one controlled Bravo Secure platform.', 'points' => ['Request and manage support in one place', 'Real-time risk awareness and SOS escalation', 'Approved provider coordination'], 'note' => 'Available on iOS and Android.'],
-                'cta' => ['headline' => 'Need secure support?', 'body' => 'Our operators are ready to help 24/7.', 'label' => 'Submit Request', 'href' => '/request-support'],
+                'cta' => ['headline' => 'Need secure support?', 'body' => 'Our operators are ready to help 24/7.', 'label' => 'Submit Request', 'href' => '/secure-services'],
             ],
 
             'request-support' => [
@@ -213,12 +211,12 @@ final class SiteContent
                     ['icon' => 'briefcase', 'title' => 'Executive Support', 'body' => 'Discreet executive protection and secure travel coordination.', 'note' => 'Matched to risk profile.'],
                     ['icon' => 'layers', 'title' => 'Operational Support', 'body' => 'Risk-aware planning and coordination for organisations.', 'note' => 'Scoped per operation.'],
                 ]],
-                'cta' => ['headline' => 'Need Secure Services?', 'body' => 'Submit a request and Bravo Secure will review availability before confirmation.', 'label' => 'Request Secure Services', 'href' => '/request-support'],
+                'cta' => ['headline' => 'Need Secure Services?', 'body' => 'Submit a request and Bravo Secure will review availability before confirmation.', 'label' => 'Request Secure Services', 'href' => '/secure-services'],
             ],
 
             'virtual-bodyguard' => [
                 'seo' => ['title' => 'Virtual Bodyguard — Bravo Secure', 'description' => 'Real-time risk awareness, live alerts, mitigation guidance, and escalation support.'],
-                'hero' => ['image' => '', 'eyebrow' => 'Virtual Bodyguard', 'headline' => 'Real-time risk awareness and SOS escalation from your phone.', 'subtext' => 'Stay informed through live alerts, risk awareness, mitigation guidance, and escalation support for individuals and organisations.', 'primaryLabel' => 'Request Support', 'primaryHref' => '/request-support', 'secondaryLabel' => 'View Features', 'secondaryHref' => '#features'],
+                'hero' => ['image' => '', 'eyebrow' => 'Virtual Bodyguard', 'headline' => 'Real-time risk awareness and SOS escalation from your phone.', 'subtext' => 'Stay informed through live alerts, risk awareness, mitigation guidance, and escalation support for individuals and organisations.', 'primaryLabel' => 'Request Support', 'primaryHref' => '/secure-services', 'secondaryLabel' => 'View Features', 'secondaryHref' => '#features'],
                 'features' => ['heading' => 'What it does', 'cards' => [
                     ['icon' => 'bell', 'title' => 'Live Alerts', 'body' => 'Stay informed with relevant updates and incident alerts.'],
                     ['icon' => 'shield', 'title' => 'Risk Awareness', 'body' => 'Understand nearby risks and changing conditions.'],
@@ -242,7 +240,7 @@ final class SiteContent
 
             'long-term-bookings' => [
                 'seo' => ['title' => 'Long-Term Bookings — Bravo Secure', 'description' => 'Custom security support for clients, families, executives and organisations that need continuity.'],
-                'hero' => ['image' => '', 'eyebrow' => 'Long-Term Bookings', 'headline' => 'Custom security support for clients who need continuity.', 'subtext' => 'For individuals, families and organisations that require recurring assistance, planned movement, regular protection support, or ongoing coordination over a defined period.', 'primaryLabel' => 'Request a Custom Package', 'primaryHref' => '/request-support', 'secondaryLabel' => 'Speak to Bravo', 'secondaryHref' => '/contact'],
+                'hero' => ['image' => '', 'eyebrow' => 'Long-Term Bookings', 'headline' => 'Custom security support for clients who need continuity.', 'subtext' => 'For individuals, families and organisations that require recurring assistance, planned movement, regular protection support, or ongoing coordination over a defined period.', 'primaryLabel' => 'Request a Custom Package', 'primaryHref' => '/secure-services', 'secondaryLabel' => 'Speak to Bravo', 'secondaryHref' => '/contact'],
                 'intro' => ['body' => 'Long-Term Bookings provide custom security support for clients, families, executives and organisations that require recurring movement, planned protection, or ongoing coordination over a defined period. Each package is shaped around your schedule, risk profile and objectives.'],
                 'columns' => [
                     ['title' => 'What Long-Term Bookings Are', 'items' => ['Custom packages built around a defined period', 'Continuity across recurring movement and protection', 'Integrated planning, coordination and review', 'A single point of accountability with Bravo']],
@@ -264,7 +262,7 @@ final class SiteContent
                     ['icon' => 'target', 'title' => 'Proactive Risk Management', 'body' => 'Continuous monitoring and early response.'],
                     ['icon' => 'lock', 'title' => 'Discreet & Reliable', 'body' => 'Professional, confidential support you can rely on.'],
                 ]],
-                'cta' => ['headline' => 'Request a custom package', 'body' => "Let's build the right security solution for you. Speak to our team to get started.", 'label' => 'Request a Custom Package', 'href' => '/request-support'],
+                'cta' => ['headline' => 'Request a custom package', 'body' => "Let's build the right security solution for you. Speak to our team to get started.", 'label' => 'Request a Custom Package', 'href' => '/secure-services'],
             ],
 
             'agent-network' => [

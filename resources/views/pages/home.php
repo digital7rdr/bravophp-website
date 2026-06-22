@@ -1,15 +1,15 @@
 <?php
 /** @var array $pg @var array $request */
 ob_start();
-comp_request_panel($request);
+comp_request_compact($request);
 $panel = ob_get_clean();
 comp_hero($pg['hero'], 'full', $panel);
 
-comp_section_open($pg['exploreServices']['heading'], $pg['exploreServices']['intro'] ?? null);
-echo '<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">';
-foreach ($pg['exploreServices']['cards'] as $c) comp_service_card($c);
-echo '</div>';
-comp_section_close();
+comp_carousel(
+    $pg['exploreServices']['heading'],
+    $pg['exploreServices']['intro'] ?? null,
+    $pg['exploreServices']['cards']
+);
 
 comp_section_open($pg['why']['heading'] ?? null, null, 'tint');
 echo '<div class="grid gap-5 sm:grid-cols-3">';

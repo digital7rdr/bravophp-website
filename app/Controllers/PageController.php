@@ -11,7 +11,7 @@ use Throwable;
 
 final class PageController extends Controller
 {
-    private const PANEL_PAGES = ['request-support', 'secure-services'];
+    private const PANEL_PAGES = ['secure-services'];
 
     public function home(): void
     {
@@ -59,7 +59,7 @@ final class PageController extends Controller
         [$ref, $code] = $this->store($type, $payload);
         flash('request_ref', $ref);
         flash('request_code', $code);
-        redirect($this->backTo('/request-support'));
+        redirect($this->backTo('/secure-services'));
     }
 
     /** Store a contact message. */

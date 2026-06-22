@@ -26,6 +26,17 @@
     a.addEventListener('click', function () { if (window.innerWidth < 1024) body.classList.remove('nav-open'); });
   });
 
+  // Image carousels (prev/next scroll)
+  document.querySelectorAll('[data-carousel]').forEach(function (track) {
+    var box = track.parentElement;
+    if (!box) return;
+    var prev = box.querySelector('[data-carousel-prev]');
+    var next = box.querySelector('[data-carousel-next]');
+    var step = function () { return Math.min(track.clientWidth * 0.8, 600); };
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  });
+
   // Request panel service tabs
   var tabWrap = document.querySelector('[data-tabs]');
   if (tabWrap) {
